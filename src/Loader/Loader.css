@@ -1,0 +1,51 @@
+.loading {
+   display: inline-block;
+ }
+ 
+ .loading-ring {
+   width: 8em; /* Adjust the size as needed */
+   height: 8em; /* Adjust the size as needed */
+   border: 0.5em solid transparent;
+   border-radius: 50%;
+   animation: loading-ring-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+ }
+ 
+ .loading-lg {
+   width: 12em; /* Large size */
+   height: 12em; /* Large size */
+ }
+ 
+ /* Define colors for the loading ring */
+ .loading-ring::before {
+   content: '';
+   display: block;
+   width: 80%;
+   height: 80%;
+   border: 0.5em solid #c45d32; /* Darker shade of orange */
+   border-color: #d9613a transparent transparent transparent; /* Adjusted hue */
+   border-radius: 50%;
+   animation: loading-ring-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+ }
+ 
+ .loading-ring::after {
+   content: '';
+   display: block;
+   width: 80%;
+   height: 80%;
+   border: 0.5em solid #3859a5; /* Darker shade of blue */
+   border-color: transparent #3d61af transparent transparent; /* Adjusted hue */
+   border-radius: 50%;
+   animation: loading-ring-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+ }
+ 
+ /* Add more loading-ring::after elements with different colors as needed */
+ 
+ @keyframes loading-ring-animation {
+   0% {
+     transform: rotate(0deg);
+   }
+   100% {
+     transform: rotate(360deg);
+   }
+ }
+ 
