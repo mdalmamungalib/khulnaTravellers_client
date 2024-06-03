@@ -97,7 +97,6 @@ const AuthProvider = ({ children }) => {
       auth,
       (currentUser) => {
         const userEmail = currentUser?.email || user?.email;
-        console.log("userEmail", userEmail);
         const loggedUser = {
           email: userEmail,
         };

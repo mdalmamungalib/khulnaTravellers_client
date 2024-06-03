@@ -51,7 +51,6 @@ const AddBanner = () => {
         if (imageResponse?.data?.data?.display_url) {
           const imageURL = imageResponse?.data?.data?.display_url;
           const bannerData = { imageURL };
-          console.log(bannerData);
           axiosSecure.post("/addBanner", bannerData).then((res) => {
             reset, refetch(), console.log(" res data", res);
           });

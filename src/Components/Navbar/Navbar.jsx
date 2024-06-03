@@ -8,7 +8,6 @@ import logo from "/src/assets/travelLogo.png"
 const Navbar = ({ bgColor, setBgColor }) => {
   const { user, logOut } = Authentication();
   const [isAdmin] = useAdmin();
-  console.log("is admin console", isAdmin);
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -25,7 +24,6 @@ const Navbar = ({ bgColor, setBgColor }) => {
       });
   };
 
-  console.log(user, "user is show");
   const navOptions = (
     <>
       <li>

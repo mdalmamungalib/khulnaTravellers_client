@@ -11,7 +11,6 @@ import Swal from "sweetalert2";
 
 const UpdateThemMember = () => {
   const loaderData = useLoaderData();
-  console.log("loader dat", loaderData);
   const [preview, setPreview] = useState("");
   const url = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMAGE_BB_KEY
@@ -68,7 +67,6 @@ const UpdateThemMember = () => {
           }
         });
 
-        console.log(updateData);
       });
     }
   };

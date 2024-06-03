@@ -24,7 +24,6 @@ const ExploreTraveling = () => {
   });
 
   const handleExplorePlan = (item) => {
-    console.log("a single data", item);
     navigate("/explorePlan", {state: { itemData: item }});
     window.scrollTo(0, 0);
   };

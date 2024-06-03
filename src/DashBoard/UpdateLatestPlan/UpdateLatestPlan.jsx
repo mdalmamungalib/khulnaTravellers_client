@@ -74,8 +74,6 @@ const UpdateLatestPlan = () => {
           });
         });
     }
-
-    console.log("update form data", data);
   };
 
   const handleImageChange = (image) => {

@@ -26,7 +26,6 @@ const AllLatestPlan = () => {
       return res.data;
     },
   });
-  console.log(latestPlan);
 
   // handle delete
   const handleDeletePlan = (plan) => {
@@ -43,7 +42,6 @@ const AllLatestPlan = () => {
         axiosSecure
           .delete(`/deletePlan/${plan?._id}`)
           .then((res) => {
-            console.log("delete result", res)
             if (res?.data?.acknowledged === true) {
               refetch();
               Swal.fire({

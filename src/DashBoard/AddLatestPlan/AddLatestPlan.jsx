@@ -26,7 +26,6 @@ const AddlatestPlan = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const formData = new FormData();
     formData.append("image", data.image[0]);
     if (data?.image && data?.image?.length > 0) {
@@ -44,7 +43,7 @@ const AddlatestPlan = () => {
             title,
             imageUrl,
           };
-          console.log(newData);
+
           axiosSecure
             .post("/latestPlan", newData)
             .then((res) => {
@@ -58,7 +57,6 @@ const AddlatestPlan = () => {
                 });
                 navigate("/dashBoard/allLatestPlan");
               }
-              console.log("res data", res);
             });
         });
     }

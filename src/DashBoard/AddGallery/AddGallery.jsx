@@ -65,7 +65,6 @@ const AddGallery = () => {
 
   // handleDelete
   const handleDelete = (data) => {
-    console.log("delete user in data", data);
     Swal.fire({
       title: `Are you sure you delete a banner`,
       text: "You won't be able to revert this!",
@@ -95,7 +94,6 @@ const AddGallery = () => {
   if (isLoading) {
     return <Loader />;
   }
-  console.log(banner);
   return (
     <>
       <UseHelmetTitle title={"Add-Gallery && Preview"} />

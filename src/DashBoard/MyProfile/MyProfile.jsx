@@ -25,7 +25,6 @@ const MyProfile = () => {
       return res.data;
     },
   });
-  console.log("profile data", users);
   if (isLoading) {
     return <Loader />;
   }

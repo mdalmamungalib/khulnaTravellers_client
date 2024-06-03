@@ -34,7 +34,6 @@ const SingUp = () => {
     createUser(data?.email, data?.password)
       .then((result) => {
         const user = result?.user;
-        console.log("sing up user", user);
 
         if (user) {
           updateUserProfile(data?.name)

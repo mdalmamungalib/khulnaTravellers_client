@@ -11,7 +11,6 @@ import Loader from "../../Loader/Loader";
 
 const EditProfile = () => {
   const loaderData = useLoaderData();
-  console.log("loader dat", loaderData);
   const [preview, setPreview] = useState("");
   const url = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMAGE_BB_KEY

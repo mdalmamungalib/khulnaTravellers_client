@@ -26,12 +26,10 @@ const AllUsers = () => {
     },
   });
 
-  console.log("users data", users);
 
   // make A Admin
   const handleMakeAdmin = (user) => {
     axiosSecure.patch(`/user/admin/${user?._id}`).then((res) => {
-      console.log("first admin ", res);
       if (res?.data?.modifiedCount) {
         refetch();
         Swal.fire(`${user?.name} has ben admin`);
@@ -78,7 +76,6 @@ const AllUsers = () => {
   // };
 
   const handleDelete = (user) => {
-    console.log("delete user in data", user);
     Swal.fire({
       title: `Are you sure Delete ${user?.email}?`,
       text: "You won't be able to revert this!",
