@@ -6,11 +6,11 @@ import "./OurTem.css";
 import { ImFacebook2 } from "react-icons/im";
 import { SlSocialInstagram } from "react-icons/sl";
 import { AiFillTikTok } from "react-icons/ai";
-import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Link } from "react-router-dom";
+import Loader from "../../../../Loader/Loader";
 
 const OurTem = () => {
   const settings = {
@@ -50,8 +50,6 @@ const OurTem = () => {
     ],
   };
 
-  const [axiosSecure] = useAxiosSecure();
-
   const {
     data: themMember = [],
     refetch,
@@ -59,25 +57,23 @@ const OurTem = () => {
   } = useQuery({
     queryKey: ["themMember"],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/them`
-      );
+      const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/them`);
       return res.data;
     },
   });
 
-  console.log("them member data", themMember);
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="max-w-screen-2xl mx-auto">
       <div className="text-center px-6 py-10 mt-28">
-        <h1 className="text-4xl text-[#1f2937] font-bold">
-          Our them
-        </h1>
+        <h1 className="text-4xl text-[#1f2937] font-bold">Our them</h1>
         <p className="text-gray-500 max-w-2xl mx-auto my-6">
-          Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Cupiditate voluptatum minima error voluptates
-          delectus eos nemo magni natus sunt quasi.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
+          voluptatum minima error voluptates delectus eos nemo magni natus sunt
+          quasi.
         </p>
       </div>
 
@@ -90,10 +86,7 @@ const OurTem = () => {
                 <div className="card-image">
                   <PhotoProvider>
                     <PhotoView src={member?.imageURL}>
-                      <img
-                        src={member?.imageURL}
-                        className="card-img"
-                      />
+                      <img src={member?.imageURL} className="card-img" />
                     </PhotoView>
                   </PhotoProvider>
                 </div>

@@ -3,12 +3,13 @@ import { FaUserShield } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { FaFacebook, FaGithub } from 'react-icons/fa';
+import { FaFacebook, FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { CgMail } from "react-icons/cg";
 import axios from "axios";
 import UseHelmetTitle from "../../Hooks/UseHelmetTitle";
 import Loader from "../../Loader/Loader";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 const AllUsers = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -88,37 +89,35 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure
-          .delete(`/user/delete/${user?._id}`)
-          .then((res) => {
-            if (res?.data?.acknowledged === true) {
-              refetch();
-              Swal.fire({
-                title: "Deleted!",
-                text: `${user?.name} has been deleted.`,
-                icon: "success",
-              });
-            }
-          });
+        axiosSecure.delete(`/user/delete/${user?._id}`).then((res) => {
+          if (res?.data?.acknowledged === true) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: `${user?.name} has been deleted.`,
+              icon: "success",
+            });
+          }
+        });
       }
     });
   };
 
   const getIcon = (method) => {
     switch (method) {
-      case 'google.com':
+      case "google.com":
         return <FcGoogle className="text-2xl " />;
-      case 'facebook.com':
+      case "facebook.com":
         return <FaFacebook className="text-2xl text-[#1877F2]" />;
-      case 'github.com':
+      case "github.com":
         return <FaGithub className="text-2xl text-[#4479c5]" />;
       default:
         return <CgMail className="text-2xl text-[#e85543]" />;
     }
   };
 
-  if(isLoading){
-    return <Loader/>
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (
@@ -140,9 +139,11 @@ const AllUsers = () => {
                   "border-radius": "15px 15px 0px 0px",
                   background: "#86A789",
                 }}
-                className="text-white uppercase">
+                className="text-white uppercase"
+              >
                 <tr>
                   <th></th>
+                  <th>Image</th>
                   <th>Name</th>
                   <th>Method</th>
                   <th>Email</th>
@@ -152,22 +153,42 @@ const AllUsers = () => {
               </thead>
               <tbody className="text-black">
                 {/* row 1 */}
+
                 {users.map((user, index) => (
-                  <tr key={user._id}>
+                  <tr key={index}>
                     <td>{index + 1}</td>
                     <td>
-                      <div className="font-bold">
-                        {user?.name}
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                          {user?.userImage ? (
+                            <PhotoProvider>
+                              <PhotoView src={user?.userImage}>
+                                <img
+                                  src={user?.userImage}
+                                  alt="Avatar Tailwind CSS Component"
+                                />
+                              </PhotoView>
+                            </PhotoProvider>
+                          ) : (
+                            <img
+                              src={
+                                "https://i.pngimg.me/thumb/f/350/m2H7H7N4b1Z5H7m2.jpg"
+                              }
+                              alt="Avatar Tailwind CSS Component"
+                            />
+                          )}
+                        </div>
                       </div>
                     </td>
                     <td>
-                    <div>{getIcon(user?.method)}</div>
+                      <div className="font-bold">{user?.name}</div>
+                    </td>
+                    <td>
+                      <div>{getIcon(user?.method)}</div>
                     </td>
                     {/* todo: change image name */}
-                    <td className="flex text-lg">
-                      {user?.email}
-                    </td>
-                   
+                    <td className="flex text-lg">{user?.email}</td>
+
                     <th>
                       {user?.role === "admin" ? (
                         "Admin"
@@ -176,7 +197,8 @@ const AllUsers = () => {
                           onClick={() => handleMakeAdmin(user)}
                           className="btn bg-[#B2C8BA]
                        hover:bg-[#EBF3E8] border-none 
-                       text-black text-2xl">
+                       text-black text-2xl"
+                        >
                           <FaUserShield></FaUserShield>
                         </button>
                       )}
@@ -192,7 +214,8 @@ const AllUsers = () => {
                         onClick={() => handleDelete(user)}
                         className="btn bg-[#B91C1C] border-none 
                       hover:bg-[white] hover:text-[#B91C1C] btn-xs 
-                      w-12 h-12 text-white text-lg">
+                      w-12 h-12 text-white text-lg"
+                      >
                         <FaTrash></FaTrash>
                       </button>
                     </th>

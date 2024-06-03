@@ -10,6 +10,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import UseHelmetTitle from "../Hooks/UseHelmetTitle";
 import { GrGallery } from "react-icons/gr";
 import { SiHomebridge } from "react-icons/si";
+import { CgProfile } from "react-icons/cg";
 
 const DashBoard = () => {
   // const isAdmin = true;
@@ -57,6 +58,9 @@ const DashBoard = () => {
           </div>
           </NavLink>
           <li className="mt-10">
+            <NavLink to="/dashBoard/myProfile">
+              <CgProfile/> My Profile
+            </NavLink>
             <NavLink to="/dashBoard/home">
               <SiHomebridge/> Dashboard Home
             </NavLink>

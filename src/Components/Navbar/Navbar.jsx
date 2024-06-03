@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Authentication from "../../Hooks/Authentication";
 import Swal from "sweetalert2";
 import useAdmin from "../../Hooks/useAdmin";
+import logo from "/src/assets/travelLogo.png"
+
 
 const Navbar = ({ bgColor, setBgColor }) => {
   const { user, logOut } = Authentication();
@@ -42,7 +44,7 @@ const Navbar = ({ bgColor, setBgColor }) => {
         <Link to={"/gallery"}><a>Gallery</a></Link>
         
       </li>
-      {isAdmin?.admin === true ? (
+      {user ? (
         <li>
           <Link to={"/dashBoard/home"}>
             <a>Dash Board</a>
@@ -99,7 +101,7 @@ const Navbar = ({ bgColor, setBgColor }) => {
               <Link to="/">
                 <img
                   className="w-28"
-                  src="/public/travelLogo.png"
+                  src={logo}
                   alt="travelLogo"
                 />
               </Link>

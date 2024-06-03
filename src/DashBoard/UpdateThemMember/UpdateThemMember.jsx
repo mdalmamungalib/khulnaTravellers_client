@@ -52,10 +52,7 @@ const UpdateThemMember = () => {
         }).then((result) => {
           if (result.isConfirmed) {
             axiosSecure
-              .put(
-                `/updateThemMember/${loaderData?._id}`,
-                updateData
-              )
+              .put(`/updateThemMember/${loaderData?._id}`, updateData)
               .then((res) => {
                 if (res.data.acknowledged === true) {
                   Swal.fire({
@@ -82,20 +79,20 @@ const UpdateThemMember = () => {
   return (
     <section
       className="w-full max-w-lg flex items-center justify-center 
- h-[820px] mt-10 p-5 rounded-lg bg-[#f6f6f6]">
+ h-[820px] mt-10 p-5 rounded-lg bg-[#f6f6f6]"
+    >
       <UseHelmetTitle title={"Add Them Member"} />
 
       <div
         className="container flex items-center justify-center 
-     min-h-screen px-6 mx-auto">
+     min-h-screen px-6 mx-auto"
+      >
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="w-full max-w-lg py-28">
+          className="w-full max-w-lg py-28"
+        >
           <div className="flex justify-center mx-auto">
-            <h1>
-              Please provide your them member update
-              information..
-            </h1>
+            <h1>Please provide your them member update information..</h1>
           </div>
           <div className="flex justify-center mx-auto mt-8">
             {preview ? (
@@ -113,10 +110,7 @@ const UpdateThemMember = () => {
                 <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                   <PhotoProvider>
                     <PhotoView src={loaderData?.imageURL}>
-                      <img
-                        src={loaderData?.imageURL}
-                        alt="Preview"
-                      />
+                      <img src={loaderData?.imageURL} alt="Preview" />
                     </PhotoView>
                   </PhotoProvider>
                 </div>
@@ -125,7 +119,7 @@ const UpdateThemMember = () => {
           </div>
 
           {/* Title input field */}
-          <div className="relative flex items-center mt-8">
+          <div className="form-control mt-8">
             <input
               {...register("name", { required: true })}
               defaultValue={loaderData?.name}
@@ -137,10 +131,15 @@ const UpdateThemMember = () => {
               focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Name"
             />
+            {errors.name && (
+              <span className="text-red-500 text-sm mt-2">
+                name is required
+              </span>
+            )}
           </div>
 
           {/* selector */}
-          <div className="relative flex items-center mt-8">
+          <div className="form-control mt-8">
             <select
               {...register("role", { required: true })}
               defaultValue={loaderData?.role}
@@ -148,15 +147,16 @@ const UpdateThemMember = () => {
              border rounded-lg px-5  border-none   dark:text-gray-700
               dark:border-gray-600 focus:border-blue-400 
               dark:focus:border-blue-300 focus:ring-blue-300 
-              focus:outline-none focus:ring focus:ring-opacity-40">
+              focus:outline-none focus:ring focus:ring-opacity-40"
+            >
               <option>Admin</option>
-              <option>Host</option>
+              <option>Moderator</option>
             </select>
           </div>
 
           {/* image upload input field */}
 
-          <div className="relative flex items-center mt-8">
+          <div className="form-control mt-6">
             <input
               {...register("image", { required: true })}
               type="file"
@@ -166,14 +166,17 @@ const UpdateThemMember = () => {
             dark:border-gray-600 focus:border-blue-400 
             dark:focus:border-blue-300 focus:ring-blue-300 
             focus:outline-none focus:ring focus:ring-opacity-40"
-              onChange={(event) =>
-                handleImageChange(event.target.files[0])
-              }
+              onChange={(event) => handleImageChange(event.target.files[0])}
             />
+            {errors.image && (
+              <span className="text-red-500 text-sm mt-2">
+                image is required
+              </span>
+            )}
           </div>
 
           {/* faceBook input field */}
-          <div className="relative flex items-center mt-6">
+          <div className="form-control mt-6">
             <input
               {...register("faceBook", { required: true })}
               defaultValue={loaderData?.faceBook}
@@ -186,9 +189,14 @@ const UpdateThemMember = () => {
              focus:ring-opacity-40"
               placeholder="FaceBook Link"
             />
+            {errors.faceBook && (
+              <span className="text-red-500 text-sm mt-2">
+                faceBook is required
+              </span>
+            )}
           </div>
           {/* instaGram input field */}
-          <div className="relative flex items-center mt-6">
+          <div className="form-control mt-6">
             <input
               {...register("instaGram")}
               defaultValue={loaderData?.instaGram}
@@ -201,9 +209,10 @@ const UpdateThemMember = () => {
              focus:ring-opacity-40"
               placeholder="Instagram Link"
             />
+            
           </div>
           {/* tikTok input field */}
-          <div className="relative flex items-center mt-6">
+          <div className="form-control mt-6">
             <input
               {...register("tikTok")}
               defaultValue={loaderData?.tikTok}

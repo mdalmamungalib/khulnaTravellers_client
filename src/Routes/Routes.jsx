@@ -20,6 +20,8 @@ import ExplorePlan from "../Components/Pages/Destinations/ExplorePlan";
 import Gallery from "../Components/Pages/Gallery/Gallery";
 import AddGallery from "../DashBoard/AddGallery/AddGallery";
 import DashBoardHome from "../DashBoard/DashBoardHome/DashBoardHome";
+import MyProfile from "../DashBoard/MyProfile/MyProfile";
+import EditProfile from "../DashBoard/EditProfile/EditProfile";
 
 export const router = createBrowserRouter([
   {
@@ -65,9 +67,9 @@ export const router = createBrowserRouter([
     path: "/dashBoard",
     errorElement: <NotFoundPage />,
     element: (
-      <AdminRoute>
-        <DashBoard />
-      </AdminRoute>
+      // <AdminRoute>
+      // </AdminRoute>
+      <DashBoard />
     ),
     children: [
       {
@@ -90,11 +92,7 @@ export const router = createBrowserRouter([
         path: "/dashBoard/updateLatestPlan/:id",
         element: <UpdateLatestPlan />,
         loader: ({ params }) =>
-          fetch(
-            `${import.meta.env.VITE_SERVER_URL}/aLatestPlan/${
-              params.id
-            }`
-          ),
+          fetch(`${import.meta.env.VITE_SERVER_URL}/aLatestPlan/${params.id}`),
       },
       {
         path: "/dashBoard/addThemMember",
@@ -108,11 +106,7 @@ export const router = createBrowserRouter([
         path: "/dashBoard/updateMember/:id",
         element: <UpdateThemMember />,
         loader: ({ params }) =>
-          fetch(
-            `${import.meta.env.VITE_SERVER_URL}/aMember/${
-              params.id
-            }`
-          ),
+          fetch(`${import.meta.env.VITE_SERVER_URL}/aMember/${params.id}`),
       },
       {
         path: "/dashBoard/addBanner",
@@ -121,6 +115,16 @@ export const router = createBrowserRouter([
       {
         path: "/dashBoard/addGallery",
         element: <AddGallery />,
+      },
+      {
+        path: "/dashBoard/myProfile",
+        element: <MyProfile />,
+      },
+      {
+        path: "/dashBoard/editProfile/:id",
+        element: <EditProfile />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_SERVER_URL}/singleUser/${params.id}`),
       },
     ],
   },
