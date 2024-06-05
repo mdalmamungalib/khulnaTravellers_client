@@ -152,7 +152,7 @@ const AllUsers = () => {
                 {/* row 1 */}
 
                 {users.map((user, index) => (
-                  <tr key={index}>
+                  <tr key={user._id}>
                     <td>{index + 1}</td>
                     <td>
                       <div className="avatar">

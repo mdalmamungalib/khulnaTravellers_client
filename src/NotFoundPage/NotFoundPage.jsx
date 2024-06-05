@@ -38,6 +38,9 @@ const NotFoundPage = () => {
             Page not found
           </h1>
           <p className="mt-4 text-gray-500 ">
+            (please reload the page)
+          </p>
+          <p className="mt-4 text-gray-500 ">
             The page you are looking for doesn't exist. Here are some helpful
             links:
           </p>

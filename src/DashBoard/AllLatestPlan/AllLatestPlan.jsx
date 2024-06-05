@@ -9,6 +9,7 @@ import "react-photo-view/dist/react-photo-view.css";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loader from "../../Loader/Loader";
+import UseHelmetTitle from "../../Hooks/UseHelmetTitle";
 
 const AllLatestPlan = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -76,6 +77,7 @@ const AllLatestPlan = () => {
   }
   return (
     <div className="w-full bg-slate-100 p-4 md:p-12 rounded-2xl overflow-x-auto">
+      <UseHelmetTitle title={"All Latest Plan"} />
       <div className="flex justify-evenly items-center gap-10  uppercase 
       text-black">
           <h1 className="text-2xl sm:text-3xl md:text-xl lg:text-3xl font-bold">

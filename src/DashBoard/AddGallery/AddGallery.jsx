@@ -12,13 +12,13 @@ const AddGallery = () => {
   const [preview, setPreview] = useState("");
   const [axiosSecure] = useAxiosSecure();
 
-  // get banner
+  // get gallery
   const {
-    data: banner = [],
+    data: gallery = [],
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["banner"],
+    queryKey: ["gallery"],
     queryFn: async () => {
       const res = await axiosSecure.get("/allGallery");
       return res.data;
@@ -66,7 +66,7 @@ const AddGallery = () => {
   // handleDelete
   const handleDelete = (data) => {
     Swal.fire({
-      title: `Are you sure you delete a banner`,
+      title: `Are you sure you delete a gallery`,
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
@@ -82,7 +82,7 @@ const AddGallery = () => {
               refetch();
               Swal.fire({
                 title: "Deleted!",
-                text: `A banner has been deleted.`,
+                text: `A gallery has been deleted.`,
                 icon: "success",
               });
             }
@@ -147,7 +147,7 @@ const AddGallery = () => {
             )}
         </div>
         <input
-          value={"Add Banner"}
+          value={"Add Gallery"}
           type="submit"
           className="w-full px-6 py-3 text-sm font-medium 
               tracking-wide text-white capitalize transition-colors 
@@ -162,7 +162,7 @@ const AddGallery = () => {
         <div className="w-full bg-slate-100 p-4 md:p-12 rounded-2xl overflow-x-auto">
           <div className="flex justify-evenly items-center gap-10  uppercase text-black">
             <h1 className="text-2xl sm:text-3xl md:text-xl lg:text-3xl font-bold">
-              Total Banner: {banner.length}
+              Total gallery: {gallery.length}
             </h1>
           </div>
           {/* table aria....... */}
@@ -178,20 +178,20 @@ const AddGallery = () => {
                   className="text-white uppercase">
                   <tr>
                     <th></th>
-                    <th>Banner Image</th>
-                    <th>Delete Banner</th>
+                    <th>gallery Image</th>
+                    <th>Delete gallery</th>
                   </tr>
                 </thead>
                 <tbody className="text-black">
                   {/* row 1 */}
-                  {banner.map((banner, index) => (
-                    <tr key={banner._id}>
+                  {gallery.map((gallery, index) => (
+                    <tr key={gallery._id}>
                       <td>{index + 1}</td>
                       <td>
                         <PhotoProvider>
-                          <PhotoView src={banner?.imageURL}>
+                          <PhotoView src={gallery?.imageURL}>
                             <img
-                              src={banner?.imageURL}
+                              src={gallery?.imageURL}
                               alt=""
                               className="max-w-[600px] h-[100px]"
                             />
@@ -201,7 +201,7 @@ const AddGallery = () => {
 
                       <th>
                         <button
-                          onClick={() => handleDelete(banner)}
+                          onClick={() => handleDelete(gallery)}
                           className="btn bg-[#B91C1C] border-none 
                       hover:bg-[white] hover:text-[#B91C1C] btn-xs 
                       w-12 h-12 text-white text-lg">

@@ -19,6 +19,7 @@ import {
 } from 'recharts';
 import Authentication from '../../Hooks/Authentication';
 import Loader from '../../Loader/Loader';
+import UseHelmetTitle from '../../Hooks/UseHelmetTitle';
 
 const DashBoardHome = () => {
    const {user, loading} = Authentication();
@@ -72,6 +73,7 @@ const DashBoardHome = () => {
 
   return (
     <div className="w-full">
+      <UseHelmetTitle title={"Dashboard Home"} />
       <h1 className="text-2xl font-bold mb-6">Hi, Welcome Back! {user?.displayName}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {/* Box 01 */}

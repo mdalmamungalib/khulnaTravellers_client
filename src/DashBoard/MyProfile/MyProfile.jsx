@@ -6,6 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
 import { PhotoProvider, PhotoView } from "react-photo-view";
+import UseHelmetTitle from "../../Hooks/UseHelmetTitle";
 
 const MyProfile = () => {
   const { user } = Authentication();
@@ -30,6 +31,7 @@ const MyProfile = () => {
   }
   return (
     <div className="p-8 bg-white shadow-lg rounded-lg overflow-hidden md:max-w-md mx-auto">
+      <UseHelmetTitle title={"My Profile"} />
       <div className="relative">
         <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full flex items-center justify-center text-indigo-500">
           {users?.userImage ? (

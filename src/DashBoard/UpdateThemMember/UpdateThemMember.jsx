@@ -79,7 +79,7 @@ const UpdateThemMember = () => {
       className="w-full max-w-lg flex items-center justify-center 
  h-[820px] mt-10 p-5 rounded-lg bg-[#f6f6f6]"
     >
-      <UseHelmetTitle title={"Add Them Member"} />
+      <UseHelmetTitle title={"Update Them Member"} />
 
       <div
         className="container flex items-center justify-center 

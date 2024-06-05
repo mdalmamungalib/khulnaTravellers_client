@@ -6,10 +6,10 @@ const PrivetRout = ({ children }) => {
   const { user, loading } = Authentication();
   const location = useLocation();
 
-  
   if (loading) {
     return <Loader />;
   }
+
   if (user && user.emailVerified === true) {
     return children;
   }

@@ -14,6 +14,7 @@ const SocialLogin = () => {
     Authentication();
   const navigate = useNavigate();
   const form = location.state?.form?.pathname || "/";
+  
   const handleGoogleLogin = () => {
     signInWithGoogle()
       .then((result) => {
@@ -37,6 +38,7 @@ const SocialLogin = () => {
           })
             .then((res) => res.json())
             .then((data) => {
+              console.log("logingoole", data)
               Swal.fire({
                 position: "center",
                 title: "Login Successful!",

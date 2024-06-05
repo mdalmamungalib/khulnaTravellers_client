@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import Authentication from "../../Hooks/Authentication";
 import Swal from "sweetalert2";
-import useAdmin from "../../Hooks/useAdmin";
+// import useAdmin from "../../Hooks/useAdmin";
 import logo from "/src/assets/travelLogo.png"
 
 
 const Navbar = ({ bgColor, setBgColor }) => {
   const { user, logOut } = Authentication();
-  const [isAdmin] = useAdmin();
+  // const [isAdmin] = useAdmin();
   const handleLogOut = () => {
     logOut()
       .then(() => {

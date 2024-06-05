@@ -35,6 +35,10 @@ const useAxiosSecure = () => {
             .catch((error) => {
               console.log(error.message);
             });
+          console.log(
+            "error in the interceptor",
+            error.response
+          );
         }
         return Promise.reject(error);
       }
