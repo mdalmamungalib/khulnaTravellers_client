@@ -52,7 +52,7 @@ const AddBanner = () => {
           const imageURL = imageResponse?.data?.data?.display_url;
           const bannerData = { imageURL };
           axiosSecure.post("/addBanner", bannerData).then((res) => {
-            reset, refetch(), console.log(" res data", res);
+            reset, refetch()
           });
         }
       });
@@ -63,11 +63,9 @@ const AddBanner = () => {
   if (isLoading) {
     return <Loader />;
   }
-  console.log(banner);
 
   // handleDelete
   const handleDelete = (data) => {
-    console.log("delete user in data", data);
     Swal.fire({
       title: `Are you sure you delete a banner`,
       text: "You won't be able to revert this!",

@@ -19,7 +19,6 @@ const SocialLogin = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result?.user;
-
         const saveUser = {
           name: user?.displayName,
           email: user?.email,

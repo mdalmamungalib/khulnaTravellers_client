@@ -225,7 +225,7 @@ const UpdateThemMember = () => {
             />
           </div>
           <input
-            value={"Add A Member"}
+            value={"Update A Member"}
             type="submit"
             className="w-full px-6 py-3 text-sm font-medium 
            tracking-wide text-white capitalize transition-colors 

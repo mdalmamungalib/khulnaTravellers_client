@@ -51,11 +51,10 @@ const AddGallery = () => {
           const imageURL =
             imageResponse?.data?.data?.display_url;
           const galleryData = { imageURL };
-          console.log(galleryData);
           axiosSecure
             .post("/addGallery", galleryData)
             .then((res) => {
-              reset, refetch(), console.log(" res data", res);
+              reset, refetch()
             });
         }
       });

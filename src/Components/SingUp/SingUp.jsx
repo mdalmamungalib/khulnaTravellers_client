@@ -79,9 +79,6 @@ const SingUp = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  if (!loading) {
-    return <Loader />;
-  }
 
   return (
     <div className="bg-[#e0eefa]">

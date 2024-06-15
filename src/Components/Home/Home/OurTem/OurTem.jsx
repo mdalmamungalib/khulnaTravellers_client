@@ -69,11 +69,9 @@ const OurTem = () => {
   return (
     <div className="max-w-screen-2xl mx-auto">
       <div className="text-center px-6 py-10 mt-28">
-        <h1 className="text-4xl text-[#1f2937] font-bold">Our them</h1>
+        <h1 className="text-4xl  font-bold">Our them</h1>
         <p className="text-gray-500 max-w-2xl mx-auto my-6">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
-          voluptatum minima error voluptates delectus eos nemo magni natus sunt
-          quasi.
+        Welcome to Khulna Travels! Our dedicated team is passionate about making your travel experiences unforgettable. With a deep love for the rich culture and stunning landscapes of Khulna, we strive to showcase the best our region has to offer. Meet the leaders who ensure your journeys are filled with wonder and excitement
         </p>
       </div>
 

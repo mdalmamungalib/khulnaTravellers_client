@@ -6,7 +6,7 @@ import Login from "../Components/Login/Login";
 import DashBoard from "../Layout/DashBoard";
 import PrivetRout from "./PrivetRout";
 import AllUsers from "../DashBoard/AllUsers/AllUsers";
-import AdminRoute from "./AdminRoute";
+// import AdminRoute from "./AdminRoute";
 import AddLatestPlan from "../DashBoard/AddLatestPlan/AddLatestPlan";
 import AllLatestPlan from "../DashBoard/AllLatestPlan/AllLatestPlan";
 import UpdateLatestPlan from "../DashBoard/UpdateLatestPlan/UpdateLatestPlan";
@@ -22,6 +22,7 @@ import AddGallery from "../DashBoard/AddGallery/AddGallery";
 import DashBoardHome from "../DashBoard/DashBoardHome/DashBoardHome";
 import MyProfile from "../DashBoard/MyProfile/MyProfile";
 import EditProfile from "../DashBoard/EditProfile/EditProfile";
+import AboutUs from "../Components/Pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
         element: <Gallery />,
       },
       {
+        path: "/aboutUs",
+        element: <AboutUs />,
+      },
+      {
         path: "/signUp",
         element: <SingUp />,
       },
@@ -67,62 +72,87 @@ export const router = createBrowserRouter([
     path: "/dashBoard",
     errorElement: <NotFoundPage />,
     element: (
-      // <AdminRoute>
-      // </AdminRoute>
-      <DashBoard />
+      <PrivetRout>
+        <DashBoard />
+      </PrivetRout>
     ),
     children: [
       {
+        path: "/dashBoard/myProfile",
+        element: (
+            <MyProfile />
+        ),
+      },
+      {
         path: "/dashBoard/home",
-        element: <DashBoardHome />,
+        element: (
+            <DashBoardHome />
+        ),
       },
       {
         path: "/dashBoard/allUsers",
-        element: <AllUsers />,
+        element: (
+            <AllUsers />
+        ),
       },
       {
         path: "/dashBoard/addlatestPlan",
-        element: <AddLatestPlan />,
+        element: (
+            <AddLatestPlan />
+        ),
       },
       {
         path: "/dashBoard/allLatestPlan",
-        element: <AllLatestPlan />,
+        element: (
+            <AllLatestPlan />
+        ),
       },
       {
         path: "/dashBoard/updateLatestPlan/:id",
-        element: <UpdateLatestPlan />,
+        element: (
+            <UpdateLatestPlan />
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_SERVER_URL}/aLatestPlan/${params.id}`),
       },
       {
         path: "/dashBoard/addThemMember",
-        element: <AddThemMember />,
+        element: (
+            <AddThemMember />
+        ),
       },
       {
         path: "/dashBoard/allThemMember",
-        element: <AllThemMember />,
+        element: (
+            <AllThemMember />
+        ),
       },
       {
         path: "/dashBoard/updateMember/:id",
-        element: <UpdateThemMember />,
+        element: (
+            <UpdateThemMember />
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_SERVER_URL}/aMember/${params.id}`),
       },
       {
         path: "/dashBoard/addBanner",
-        element: <AddBanner />,
+        element: (
+            <AddBanner />
+        ),
       },
       {
         path: "/dashBoard/addGallery",
-        element: <AddGallery />,
+        element: (
+            <AddGallery />
+        ),
       },
-      {
-        path: "/dashBoard/myProfile",
-        element: <MyProfile />,
-      },
+
       {
         path: "/dashBoard/editProfile/:id",
-        element: <EditProfile />,
+        element: (
+            <EditProfile />
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_SERVER_URL}/singleUser/${params.id}`),
       },

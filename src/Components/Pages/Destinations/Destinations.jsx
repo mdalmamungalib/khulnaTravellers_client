@@ -44,7 +44,7 @@ const Destinations = () => {
       <div className="flex flex-col  sm:flex-row sm:justify-between items-center mb-5">
         <div>
           <h3 className="text-lg text-[#a1787f]">TRAVEL STORIES AND NEWS</h3>
-          <h2 className="sm:text-5xl text-3xl font-semibold mt-5">
+          <h2 className="sm:text-5xl text-3xl font-semibold mt-5 ">
             Explore our latest Plane
           </h2>
         </div>

@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import Authentication from "../../Hooks/Authentication";
 import Swal from "sweetalert2";
+import logo from "/src/assets/travelLogo.png";
 // import useAdmin from "../../Hooks/useAdmin";
-import logo from "/src/assets/travelLogo.png"
-
 
 const Navbar = ({ bgColor, setBgColor }) => {
+  // const [isAdmin] = useAdmin()
   const { user, logOut } = Authentication();
-  // const [isAdmin] = useAdmin();
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -28,19 +27,23 @@ const Navbar = ({ bgColor, setBgColor }) => {
     <>
       <li>
         <Link onClick={() => window.scrollTo(0, 0)} to={"/"}>
-          <a>Home</a>
+          <a >Home</a>
         </Link>
       </li>
       <li>
-        <Link
-          onClick={() => window.scrollTo(0, 0)}
-          to={"/destination"}>
+        <Link onClick={() => window.scrollTo(0, 0)} to={"/destination"}>
           <a>Destinations</a>
         </Link>
       </li>
       <li>
-        <Link to={"/gallery"}><a>Gallery</a></Link>
-        
+        <Link to={"/gallery"}>
+          <a>Gallery</a>
+        </Link>
+      </li>
+      <li>
+        <Link to={"/aboutUs"}>
+          <a>About Us</a>
+        </Link>
       </li>
       {user ? (
         <li>
@@ -49,11 +52,20 @@ const Navbar = ({ bgColor, setBgColor }) => {
           </Link>
         </li>
       ) : null}
+
+      {/* {user?.emailVerified === true ? (
+        <li>
+          <Link to={isAdmin=== true ? "/dashBoard/home" : "/dashBoard/myProfile" }>
+            <a>Dash Board</a>
+          </Link>
+        </li>
+      ) : null} */}
       {user ? (
         <li
           onClick={handleLogOut}
-          className="bg-white rounded-full hover:bg-sky-600 text-black hover:text-slate-300">
-          <Link to={"/logIn"}>Log Out</Link>
+          className="bg-white rounded-full hover:bg-sky-600 text-black hover:text-slate-300"
+        >
+          <Link to={"/signUp"}>Log Out</Link>
         </li>
       ) : (
         <li className="bg-white rounded-full hover:bg-sky-600 text-black hover:text-slate-300">
@@ -66,19 +78,18 @@ const Navbar = ({ bgColor, setBgColor }) => {
     <div className=" mx-auto flex justify-center">
       <div
         className="navbar fixed z-10 bg-opacity-0 text-white max-w-screen-xl
-       sm:mt-5">
+       sm:mt-5"
+      >
         <div className="navbar-start">
           <div className="dropdown text-slate-700">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor">
+                stroke="currentColor"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -89,19 +100,17 @@ const Navbar = ({ bgColor, setBgColor }) => {
             </div>
             <ul
               tabIndex={0}
+             
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 
-              shadow bg-base-100 rounded-box w-52">
+              shadow bg-base-100 rounded-box w-52 text-slate-600"
+            >
               {navOptions}
             </ul>
           </div>
           <div className="form-control">
             <div className="mx-auto">
               <Link to="/">
-                <img
-                  className="w-28"
-                  src={logo}
-                  alt="travelLogo"
-                />
+                <img className="w-28" src={logo} alt="travelLogo" />
               </Link>
             </div>
           </div>
@@ -109,7 +118,7 @@ const Navbar = ({ bgColor, setBgColor }) => {
 
         <div className="navbar-end w-full gap-5">
           <div className="navbar-end hidden lg:flex w-auto">
-            <ul className="menu menu-horizontal px-1 text-base font-bold text-slate-500">
+            <ul className="menu menu-horizontal px-1 text-base font-bold text-slate-600">
               {navOptions}
             </ul>
           </div>

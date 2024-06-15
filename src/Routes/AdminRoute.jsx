@@ -7,11 +7,12 @@ import Loader from "../Loader/Loader";
 const AdminRoute = ({ children }) => {
   const { user, loading } = Authentication();
   const [isAdmin, isAdminLoading] = useAdmin();
+ 
   const location = useLocation();
   if (isAdminLoading || loading) {
     return <Loader />;
   }
-  if (user && isAdmin?.admin === true) {
+  if (user && isAdmin === true) {
     return children;
   }
   return <Navigate to={"/"} state={{ from: location }} replace></Navigate>;

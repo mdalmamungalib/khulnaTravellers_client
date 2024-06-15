@@ -16,7 +16,6 @@ const useAxiosSecure = () => {
     axiosSecure.interceptors.response.use(
       (res) => {return res},
       (error) => {
-        console.log("error useAxios", error);
         if (
           error.response.status === 401 ||
           error.response.status === 403
@@ -35,10 +34,6 @@ const useAxiosSecure = () => {
             .catch((error) => {
               console.log(error.message);
             });
-          console.log(
-            "error in the interceptor",
-            error.response
-          );
         }
         return Promise.reject(error);
       }
