@@ -53,6 +53,8 @@ This project is a web application developed using the MERN stack (MongoDB, Expre
 - **Axios**
 - **Vite**
 
+project run to local server = npm run dev
+
 --website live som security issue this link use and off option 
 (chrome://settings/security?q=enhanced)
 
