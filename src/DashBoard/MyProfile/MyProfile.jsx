@@ -7,39 +7,59 @@ import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import UseHelmetTitle from "../../Hooks/UseHelmetTitle";
+import Swal from "sweetalert2";
 
 const MyProfile = () => {
-  const { user } = Authentication();
+  const { user, resetPassword } = Authentication();
 
   const [axiosSecure] = useAxiosSecure();
-  const {
-    data: users = [],
-    refetch,
-    isLoading,
-  } = useQuery({
-    queryKey: ["users"],
+  const { data: userProfile, refetch, isLoading } = useQuery({
+    queryKey: ["userProfile"],
     queryFn: async () => {
       const res = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/user/${user?.email}`
       );
-
       return res.data;
     },
   });
+
+  // Handle Forget Password
+  const handleForgetPassword = () => {
+    resetPassword(user?.email)
+      .then(() => {
+        Swal.fire({
+          title: "Password Reset Email Sent",
+          text: "Please check your email to reset your password.",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Error",
+          text: error.message,
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+        console.log(error);
+      });
+  };
+
   if (isLoading) {
     return <Loader />;
   }
+
   return (
     <div className="p-8 bg-white shadow-lg rounded-lg overflow-hidden md:max-w-md mx-auto">
       <UseHelmetTitle title={"My Profile"} />
       <div className="relative">
         <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full flex items-center justify-center text-indigo-500">
-          {users?.userImage ? (
+          {userProfile?.userImage ? (
             <div className="avatar">
               <div className="w-48 h-48 rounded-full">
                 <PhotoProvider>
-                  <PhotoView src={users?.userImage}>
-                    <img src={users?.userImage} alt={users?.name} />
+                  <PhotoView src={userProfile?.userImage}>
+                    <img src={userProfile?.userImage} alt={userProfile?.name} />
                   </PhotoView>
                 </PhotoProvider>
               </div>
@@ -77,23 +97,31 @@ const MyProfile = () => {
         </div>
       </div>
       <div className="mt-6 text-center">
-        <h1 className="text-xl font-bold text-gray-800">{users?.name}</h1>
-        <p className="text-gray-500">{users?.email}</p>
-        <p className="text-gray-500">{users?.age} years old</p>
-        <p className="text-gray-500">{users?.address}</p>
+        <h1 className="text-xl font-bold text-gray-800">{userProfile?.name}</h1>
+        <p className="text-gray-500">{userProfile?.email}</p>
+        {userProfile?.age && <p className="text-gray-500">{userProfile?.age} years old</p>}
+        {userProfile?.address && <p className="text-gray-500">{userProfile?.address}</p>}
       </div>
       <div className="mt-8 text-center">
-        <p className="text-gray-600">{users?.profession}</p>
-        <p className="mt-2 text-gray-600">{users?.education}</p>
+        {userProfile?.profession && <p className="text-gray-600">{userProfile?.profession}</p>}
+        {userProfile?.education && <p className="mt-2 text-gray-600">{userProfile?.education}</p>}
       </div>
       <div className="mt-8 text-center">
-        <p className="text-gray-600">{users?.about}</p>
-        <Link to={`/dashBoard/editProfile/${users?._id}`}>
+        {userProfile?.about && <p className="text-gray-600">{userProfile?.about}</p>}
+        <Link to={`/dashBoard/editProfile/${userProfile?._id}`}>
           <button className="text-indigo-500 py-2 px-4  font-medium mt-4">
             Edit Profile
           </button>
         </Link>
       </div>
+      <label className="label mt-4">
+        <Link
+          onClick={handleForgetPassword}
+          className="label-text-alt hover:text-[#0057d9] text-[#0057d9] font-bold"
+        >
+          Forgot password?
+        </Link>
+      </label>
     </div>
   );
 };
